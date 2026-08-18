@@ -1,5 +1,8 @@
 // main 
 import { getAllCountries, getCountryDetail } from "./apiService.js";
+import { renderCountryList } from "./renderCountries.js";
+import { handleError } from "./errorHandler.js";
+import { countryCard } from "./renderCountries.js";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <section id="center">
@@ -9,16 +12,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 </section> `;
 
+// const countryCard = 
+// // TEST if api fetch is working - confirm its working
+// getAllCountries().then((countries) => {
+//   console.log("Total countries:", countries.length);
+//   console.log("First country:", countries[0]);
+// });
 
-// TEST if api fetch is working - confirm its working
-getAllCountries().then((countries) => {
-  console.log("Total countries:", countries.length);
-  console.log("First country:", countries[0]);
-});
-
-getCountryDetail("BEL").then((country) => {
-  console.log("Beligum from live API:", country);}).catch((error) => {
-    console.log("getCountryDetail failed:", error);
+// getCountryDetail("BEL").then((country) => {
+//   console.log("Beligum from live API:", country);}).catch((error) => {
+//     console.log("getCountryDetail failed:", error);
     
-  });
+//   });
   

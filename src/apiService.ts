@@ -1,5 +1,6 @@
 
 import type { Country, CountryDetail, CountryDetailResponse } from "./types";
+import { ApiRequestError, CountryNotFoundError } from "./errorHandler";
 import countriesData from '../data.json';
 
 // import data.json 
@@ -19,7 +20,7 @@ export async function getCountryByCode(code: string): Promise<Country | undefine
     (country) => country.alpha3Code.toLowerCase() === code.toLowerCase()
   );
 }
-//getCountryByName function COUNTRY DETAIL PAGE live fetch
+//getCountryDetails function COUNTRY DETAIL PAGE live fetch
 
 const API_BASE_URL = "https://api.restcountries.com/countries/v5"
 

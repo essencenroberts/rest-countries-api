@@ -6,8 +6,52 @@
   <link rel="stylesheet" href="./src/style.css">
   <title>Rest Countries Api</title>
 </head>
-<body>
-  <div id="app"></div>
+<body class="bg-very-light-gray dark:bg-very-dark-blue min-h-screen">
+  <!-- header with site title + dark toggle mode -->
+  <header class="bg-white dark:bg-dark-blue shadow-sm px-4 py-6 flex items-center justify-between">
+    <h1 class="font-extrabold text-2xl md:text-2xl">Where in the world?</h1>
+    <button id="theme" class="flex items-center font-semibold text-sm md:text-base">Dark Mode</button>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- serach + filter -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+      <div class="relative w-full md:w-80">
+        <label for="search-input" class="search" hidden>Search for a country</label>
+        <input 
+          id="search-input"
+          type="text"
+          placeholder="Search for a country..."
+          class="w-full rounded-md shadow-sm bg-white dark:bg-dark-blue px-6 py-3 text-sm"
+        />
+      </div>
+
+      <!-- drop down for filer by region -->
+      <div class="w-full md:w-50">
+        <label for="region" class="search" hidden>Filter by Region</label>
+        <select
+          id="region-select"
+          class="w-full rounded-md shadow-sm bg-white dark:bg-dark-blue px-6 py-3 text-sm"
+        >
+          <option value="">Filter by Region</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- renderCountryList -->
+    <section
+      id="countries"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+      aria-live="polite"
+    >
+    </section>
+  </main>
+  <!-- <div id="app"></div> -->
 
   <script type="module" src="src/index.ts"></script>
 </body>
