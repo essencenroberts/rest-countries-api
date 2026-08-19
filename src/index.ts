@@ -1,18 +1,70 @@
 // main 
 import { getAllCountries, getCountryDetail } from "./apiService.js";
-import { renderCountryList } from "./renderCountries.js";
+import { renderCountryList, countryCard } from "./renderCountries.js";
 import { handleError } from "./errorHandler.js";
-import { countryCard } from "./renderCountries.js";
+import type { Country } from "./types.js";
+import "./theme.js";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="flex flex-col items-center justify-center min-h-screen bg-red-500 text-white">
-    <h1 class="text-4xl font-extrabold drop-shadow">Rest Countries Api</h1>
-    <p class="mt-4 text-slate-200"> Today we are creating the rest countries api project</p>
-  </div>
-</section> `;
 
+
+// connect to HTML using DOM
+const countriesContainer = document.getElementById("countries")!;
+
+const searchInput = document.getElementById("search-input") as HTMLInputElement;
+
+const regionSelect = document.getElementById("region-select") as HTMLSelectElement;
+
+// array of Countrys 
+let allCountries: Country[] = [];
+
+
+// filterCountries 
+function filterCountries(
+  countries: Country[],
+  searchText: string,
+  region: string
+): Country[] {
+  return countries.filter((country) => {
+    const matchesSearch = country.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
+    const matchesRegion = region === "" || country.region === region;
+      return matchesSearch && matchesRegion;
+  });
+}
+
+// every time the input chnages we need to call updateDisplayCountries to re-render the grid
+function updateDisplayCountries(): void {
+  const filtered = filterCountries(
+    allCountries,
+    searchInput.value,
+    regionSelect.value
+  );
+  renderCountryList(filtered, countriesContainer);
+}
+
+// on page load
+getAllCountries()
+  .then((countries) => {
+    allCountries = countries;
+    renderCountryList(allCountries, countriesContainer);
+  }) 
+  .catch((error) => {
+    handleError(error, countriesContainer);
+  });
+
+
+console.log("search input found:", searchInput);
+console.log("region select found:", regionSelect);
+
+//add event listenders
+  searchInput.addEventListener("input", updateDisplayCountries);
+
+  regionSelect.addEventListener("change", updateDisplayCountries);
 // const countryCard = 
+
+
+
 // // TEST if api fetch is working - confirm its working
 // getAllCountries().then((countries) => {
 //   console.log("Total countries:", countries.length);

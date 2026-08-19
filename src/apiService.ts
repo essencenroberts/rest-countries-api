@@ -38,7 +38,7 @@ export async function getCountryDetail(code: string): Promise<CountryDetail> {
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch country: ${response.status}`);
+    throw new ApiRequestError(response.status);
   }
 
   const result = (await response.json()) as CountryDetailResponse;
@@ -46,7 +46,7 @@ export async function getCountryDetail(code: string): Promise<CountryDetail> {
   const country = result.data.objects[0];
 
   if (!country) {
-    throw new Error(`No country found for code: ${code}`);
+    throw new CountryNotFoundError(code);
 
 
 

@@ -8,7 +8,7 @@ import type { Country } from "./types";
 
 export function countryCard(country: Country): HTMLElement {
   const card = document.createElement("a");
-  card.href = `detail.html?code=${country.alpha3Code}`;
+  card.href = `details.html?code=${country.alpha3Code}`;
   card.className = "block rounded-lg overflow-hidden shadow-md bg-white dark:bg-dark-blue";
 
 
@@ -21,7 +21,7 @@ export function countryCard(country: Country): HTMLElement {
 
   // text below the flag 
 
-   const infoContainer = document.createElement("div");
+  const infoContainer = document.createElement("div");
   infoContainer.className = "p-6";
 
   // country name
@@ -39,7 +39,7 @@ export function countryCard(country: Country): HTMLElement {
   // capital 
 
   const capitalText = document.createElement("p");
-  capitalText.innerHTML = `<span class="font-semibold">Capital:</span>${country.capital ?? "N/A"
+  capitalText.innerHTML = `<span class="font-semibold">Capital:</span> ${country.capital ?? "N/A"
   }`;
 
   infoContainer.append(populationText, regionText, capitalText);
@@ -61,7 +61,7 @@ export function renderCountryList(
 ): void {
   container.innerHTML = "";
 
-  countries.array.forEach((country) => {
+  countries.forEach((country) => {
     const card = countryCard(country);
     container.appendChild(card);
   });

@@ -47,14 +47,14 @@ export interface CountryDetail {
 
   capitals?: {
     name: string;
-  }
+  }[];
 
   tlds?: string[];
 
   currencies?: {
     name: string;
 
-  }
+  }[];
 
   languages?: {
     name: string;
