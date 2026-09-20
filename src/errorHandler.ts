@@ -18,9 +18,11 @@ export class ApiRequestError extends Error {
   }
 }
 
-// handleError
-export function handleError(error: unknown, container?: HTMLElement): void {
+// // handleError
+// export function handleError(error: unknown, container?: HTMLElement): void {
   
+  export function getErrorMessage(error: unknown): string {
+
   console.error(error);
 
   let message = "Something went wrong. Please try again.";
@@ -32,7 +34,7 @@ export function handleError(error: unknown, container?: HTMLElement): void {
     
         break;
       case 403:
-        message = "The monthly tequest limit had been reached. Please try again later";
+        message = "The monthly request limit had been reached. Please try again later";
         break;
 
       case 404:
@@ -42,15 +44,16 @@ export function handleError(error: unknown, container?: HTMLElement): void {
         message = "Something went wrong laoding that country. Please try again.";
     
     }
-  } else if (error instanceof CountryNotFoundError) {
-    message = error.message;
-  } else if (error instanceof Error) {
+  } //check country not found error used
+    else if (error instanceof CountryNotFoundError) {
+      message = error.message;
+  } 
+  //check if JavaScript error
+  else if (error instanceof Error) {
     message = error.message;
   }
 
-  if (container) {
-    container.textContent = message;
-  }
+  return message;
 }
 
 
