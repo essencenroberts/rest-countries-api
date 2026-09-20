@@ -1,6 +1,10 @@
-# Frontend Mentor - REST Countries API with color theme switcher solution
+# Frontend Mentor - REST Countries API with color theme switcher solution (React Refactor)
 
-This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). 
+
+This project started as a vanilla TypeScript and DOM manipulation project. I later refactored the project into a React + TypeScrip application while keeping the main features and existing data layer.
+
+The purpose of this project was to practice taking an existing application and changing its structure to use React concepst instead of manually manipulating the DOM.
 
 ## Table of contents
 
@@ -15,7 +19,89 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 - [Author](#author)
 
 
-## Overview
+## Overview | What I Built
+
+The application allows users to:
+
+- View a list of countries
+- Search for a country by name
+- Filter countries by region
+- Click a country to view more details
+- View population, region, sub-region, capital, currencies, languages, and top-level domains
+- View border countries
+- Click a border country to view its details
+- Switch between light and dark mode
+- Save the user's theme preference in local storage
+- Navigate between pages without traditional full-page reloads
+
+
+## The Orginal Project
+
+The first version of this project was built with:
+
+- Vite 
+- TypeScript
+- HTML
+- Tailwind CSS
+- DOM manipulation
+- REST Countries API/data
+
+The original application used files such as:
+
+theme.ts
+types.ts
+errorHandler.ts
+details.ts
+apiService.ts
+renderCountries.ts
+index.ts
+
+The application manually found HTML elements with methods such as:
+
+`document.getElementById()`
+
+and created or changed HTML with methods such as:
+
+`document.createElement()`
+
+It also used event listeners such as:
+
+`addEventListener()`
+
+## React Refactor
+Instead of manually changing the DOM, I refactored the application to use React components, state, hooks, and React Router.
+
+The goal was to keep the application's main features while changing the way the application is organized and rendered.
+
+<b>Before</b>
+
+The vanilla TypeScript version worked more like this:
+
+User interacts with page
+        ↓
+JavaScript finds HTML element
+        ↓
+Event listener runs
+        ↓
+JavaScript changes the DOM
+        ↓
+New information appears
+
+<b>After</b>
+
+The React version works more like this:
+
+User interacts with page
+        ↓
+React event handler runs
+        ↓
+State changes
+        ↓
+React re-renders the necessary UI
+        ↓
+Updated information appears
+
+This refactor helped me understand the difference between manually manipulating the DOM and allowing React to manage the user interface based on state.
 
 ### The challenge
 
@@ -38,7 +124,6 @@ Users should be able to:
 - Solution URL: [https://github.com/essencenroberts/rest-countries-api]
 - Live Site URL: [https://restcountriesapi2026.netlify.app/]
 
-## My process
 
 ### Built with
 
@@ -63,10 +148,20 @@ This project pulls country data from two different places:
 
 ### What I learned
 
-I got real practice working with PAI that requires authentication from the browser, environment variables in VITE (import.meta.env.VITE_*), and the specific CORS behavior of allowlisted origins.
+I got real practice working with API that requires authentication from the browser, environment variables in VITE (import.meta.env.VITE_*), and the specific CORS behavior of allowlisted origins.
 
 A few times I typed a field a caertain way based on what i assumed the API would return, and it turned out to be wrong. For example, I assumed `currencies` and `langiages` were objects but they're actually arrays. I only caight this by logging a real response from the API and comparing it side by side with what I had written.
 
+With Refactoring one of the biggest things I learned was the difference between vanilla DOM manipulation and React.
+
+In the original project, I had to tell JavaScript exactly what HTML element to find and what to change.
+
+In React, I can store information in state and describe what the UI should look like based on that state.
+
+I also learned that refactoring does not necessarily mean rewriting everything. Some existing code, such as the data service and TypeScript types, could continue to be used while the UI architecture changed.
+
+
+#### Reflection
 
 ### Useful resources
 
@@ -78,4 +173,4 @@ A few times I typed a field a caertain way based on what i assumed the API would
 
 ## Author
 
-- Website - [Essence](https://essence-portfolio.netlify.app/)
+- Website - [Essence Portfolio](https://essence-portfolio.netlify.app/)
